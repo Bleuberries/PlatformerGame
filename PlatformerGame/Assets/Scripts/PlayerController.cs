@@ -14,12 +14,17 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded;
 
 
+    //Animations Variables
+    Animator anim;
+    public bool: moving;
+
     public GameManager gm;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<RigidBody2D>();
     }
 
     // Update is called once per frame
@@ -36,12 +41,14 @@ public class PlayerController : MonoBehaviour
         {
             newPosition.x -= speed;
             newScale.x = -currentScale;
+            moving = true;
         }
 
         if (Input.GetKey("d") || Input.GetKey(KeyCode.RightArrow))
         {
             newPosition.x += speed;
             newScale.x = currentScale;
+            moving = true;
         }
 
         if (Input.GetKey("w") && isGrounded)
@@ -49,6 +56,12 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
 
+        if(Input GetKey("a") || Input.GetKeyUp("d"))
+        {
+            moving = false;
+        }
+
+        anim SetBool(); ("isMoving",moving);
         transform.position = newPosition;
         transform.localScale = newScale;
     }
@@ -82,7 +95,7 @@ public class PlayerController : MonoBehaviour
 
    
 
-   
+
    
    
    
